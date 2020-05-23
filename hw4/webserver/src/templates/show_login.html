@@ -1,0 +1,58 @@
+<html>
+<head>
+<title>Home Page</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<div class="link" style='padding:2.5rem'>
+<h1>Welcome to our health care assistant website</h1>    
+<p>This is the new generation personal health care assistant, helping one with his/her own health. With our new service, you and your family members can keep track of your health conditions and receive notifications from doctors. Isn't it just wonderful that you will have some way to remind yourself of your health and get advice from it? Interested? Please sign up for our newsletter. You can also get more detail with price and features from the below links</p>
+<p>Want to register to know more? <a href="/register"><font size=3><strong>Click Here</strong></a></p>
+<p>Want to know us? <a href="/about"><font size=3><strong>Click Here</strong></a></p>
+<p>Want to know our product features? <a href="/features"><font size=3><strong>Click Here</strong></a></p>
+<p>Our Pricing <a href="/price"><font size=3><strong>Click Here</strong></a></p>
+<p>Product News <a href="/news"><font size=3><strong>Click Here</strong></a></p>
+<p>Product Progress <a href="/parameter"><font size=3><strong>Click Here</strong></a></p>
+<div class='metric'>
+    <h6 data-count='0' id='users'></h6>
+    <div> Registered Users </div>
+</div>
+
+
+</div>
+<!-- <p id="demo">Click me.</p> -->
+<div id="namesFromFile">
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", (event) => {
+  var dataURL = 'count.json';
+  
+  <!-- var newscount = 'newscount.json'; -->
+
+  function showError(err) {
+    console.log(err);
+  }
+
+  function update(data) {
+    var theArray = data.count;
+	console.log(theArray)
+	var theCount = theArray.toString();
+	<!-- console.log(theCount); -->
+    var theUsers = document.querySelector("#users");
+    theUsers.setAttribute("data-count", theCount);
+  }
+  
+
+  fetch(dataURL)
+    .then((response) => response.json())
+    .then(update)
+    .catch(showError);
+	
+  setTimeout("self.location.reload();",60000);
+});
+
+</script>
+
+</body>
+</html>

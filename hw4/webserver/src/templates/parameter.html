@@ -1,0 +1,45 @@
+<html>
+<head>
+<title>Parameters</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h1>Parameters Page</h1>
+<div class='parameter'>
+	<h4 para='' id='para'></h4>
+	<div> Parameter is listed here </div>
+</div>	
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", (event) => {
+  var parameter = 'parameter.json';
+
+  function showError(err) {
+    console.log(err);
+  }
+
+  function update(data) {
+    var theArray = data.parameter;
+	console.log(theArray)
+	var parameter = theArray.toString();
+	console.log(parameter)
+    var theUsers = document.querySelector("#para");
+    theUsers.setAttribute("para", parameter);
+  }
+
+  fetch(parameter)
+    .then((response) => response.json())
+    .then(update)
+    .catch(showError);
+	
+  setTimeout("self.location.reload();",60000);
+});
+
+</script>
+
+
+</body>
+<input type="button" id = 'logbtn' onclick="window.location.href = '/login'" value="Go Back"/>
+</html>

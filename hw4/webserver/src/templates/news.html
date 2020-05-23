@@ -1,0 +1,46 @@
+<html>
+<head>
+<title>News</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<h1>News Page</h1>
+<div class='newspage'>
+	<h5 news='' id='news'></h5>
+	<div> News is listed here </div>
+</div>	
+
+
+
+<script>
+document.addEventListener("DOMContentLoaded", (event) => {
+  var newscontent = 'news.json';
+
+  function showError(err) {
+    console.log(err);
+  }
+
+  function update(data) {
+    var theArray = data.news;
+	console.log(theArray)
+	var news = theArray.toString();
+	console.log(news)
+    var theUsers = document.querySelector("#news");
+    theUsers.setAttribute("news", news);
+  }
+
+  fetch(newscontent)
+    .then((response) => response.json())
+    .then(update)
+    .catch(showError);
+	
+  setTimeout("self.location.reload();",60000);
+});
+
+</script>
+
+
+</body>
+<input type="button" id = 'logbtn' onclick="window.location.href = '/login'" value="Go Back"/>
+</html>
+

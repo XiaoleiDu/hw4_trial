@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Count page</title>
+<link rel="stylesheet" type="text/css" href="style2.css">
+</head>
+<body>
+<div class='metric'>
+    <h1 data-count='0' id='users'></h1>
+    <div> Registered Users </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", (event) => {
+  var dataURL = 'count.json';
+
+  function showError(err) {
+    console.log(err);
+  }
+
+  function update(data) {
+    var theArray = data.count;
+	var theCount = theArray.toString()
+	console.log(theCount);
+    var theUsers = document.querySelector("#users");
+    theUsers.setAttribute("data-count", theCount);
+	
+  }
+
+  fetch(dataURL)
+    .then((response) => response.json())
+    .then(update)
+    .catch(showError);
+});
+
+</script>
+
+
+</body>
+</html>
